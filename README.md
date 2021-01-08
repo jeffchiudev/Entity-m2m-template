@@ -8,7 +8,7 @@
 <img src="https://github.com/jeffchiudev.png" width="200px" height="auto" style="border-radius: 15px 50px;">
 
 </div>
-<h3 align="center">Many-to-many relationship database, 08.Jan.2020</h3>
+<h3 align="center">Many-to-many relationship database, 08.Jan.2021</h3>
 <h4 align="center"> By Jeff Chiu</h4>
 
 
@@ -98,4 +98,4 @@ If any errors or bugs occur please email me [here](jeffchiudev@gmail.com).
 
 This software is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 
-<img src="https://apprecs.org/gp/images/app-icons/300/7c/air.capoo.jpg" width="1%" height="auto" style="border-radius: 50%"> Copyright (c) 2020 Jeff Chiu 
+<img src="https://apprecs.org/gp/images/app-icons/300/7c/air.capoo.jpg" width="1%" height="auto" style="border-radius: 50%"> Copyright (c) 2021 Jeff Chiu 
