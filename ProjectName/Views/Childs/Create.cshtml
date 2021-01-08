@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ProjectName.Models.Child
+
+<h4>Add a new task</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Description)
+    @Html.TextBoxFor(model => model.Description)
+
+    @Html.Label("Select Parent")
+    @Html.DropDownList("ParentId")
+
+    <input type="submit" value="Add new child" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all childs", "Index")</p>

@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ProjectName.Models.Child
+
+<h2>Child Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+
+@if(@Model.Parents.Count == 0)
+{
+  <p>This child does not belong to any categories</p>
+}
+else
+{
+  <h4>Parents the child belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Parents)
+  {
+    <li>@join.Parent.Name</li>
+    @using (Html.BeginForm("DeleteParent", "Childs"))
+    {
+      @Html.Hidden("joinId", @join.ParentChildId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Child", "Edit", new { id = Model.ChildId })</p>
+<p>@Html.ActionLink("Add a Parent", "AddParent", new { id = Model.ChildId })</p>
+<p>@Html.ActionLink("Delete Child", "Delete", new { id = Model.ChildId })</p>

@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ProjectName.Models.Child
+
+<h2>Add a parent</h2>
+
+<h4>Add a parent to this task: @Html.DisplayFor(model => model.Description)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ChildId)
+
+    @Html.Label("Select parent")
+    @Html.DropDownList("ParentId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
