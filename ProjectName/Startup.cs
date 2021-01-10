@@ -32,6 +32,16 @@ namespace ProjectName
             services.AddIdentity<ApplicationUser, IdentityRole>()
                         .AddEntityFrameworkStores<ProjectNameContext>()
                         .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 0;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredUniqueChars = 0;
+            })
         }
 
         public void Configure(IApplicationBuilder app)
