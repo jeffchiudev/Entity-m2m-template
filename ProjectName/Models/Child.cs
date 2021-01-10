@@ -11,6 +11,7 @@ namespace ProjectName.Models
 
         public int ChildId { get; set; }
         public string Description { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public ICollection<ParentChild> Parents { get;}
     }

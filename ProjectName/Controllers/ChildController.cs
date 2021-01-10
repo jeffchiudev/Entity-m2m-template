@@ -1,24 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
-using ProjectName.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using ProjectName.Models;
 
 namespace ProjectName.Controllers
 {
+    [Authorize]
     public class ChildsController : Controller
     {
         private readonly ProjectNameContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ChildsController(ProjectNameContext db)
+        public ChildsController(UserManager<ApplicationUser> userManager, ProjectNameContext db)
         {
+            _userManager = userManager;
             _db = db;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_db.Childs.ToList());
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var userChilds = _db.Childs.Where(entry => entry.User.Id == currentUser.Id).ToList();
+            return View(userChilds);
         }
 
         public ActionResult Create()
@@ -28,8 +38,11 @@ namespace ProjectName.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Child child, int ParentId)
+        public async Task<ActionResult> Create(Child child, int ParentId)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            child.User = currentUser;
             _db.Childs.Add(child);
             if (ParentId != 0)
             {
