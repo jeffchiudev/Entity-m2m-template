@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using ProjectName.Models;
 
 namespace ProjectName
@@ -12,40 +13,46 @@ namespace ProjectName
     {
         public Startup(IHostingEnvironment env)
         {
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json");
-        Configuration = builder.Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json");
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-        services.AddMvc();
+            services.AddMvc();
 
-        services.AddEntityFrameworkMySql()
-            .AddDbContext<ProjectNameContext>(options => options
-            .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddEntityFrameworkMySql()
+                .AddDbContext<ProjectNameContext>(options => options
+                .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                        .AddEntityFrameworkStores<ProjectNameContext>()
+                        .AddDefaultTokenProviders();
         }
 
         public void Configure(IApplicationBuilder app)
         {
-        app.UseStaticFiles();
+            app.UseStaticFiles();
 
-        app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage();
 
-        app.UseMvc(routes =>
-        {
-            routes.MapRoute(
-            name: "default",
-            template: "{controller=Home}/{action=Index}/{id?}");
-        });
+            app.UseAuthentication();
 
-        app.Run(async (context) =>
-        {
-            await context.Response.WriteAsync("Something went wrong!");
-        });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Oopsie Doodle!");
+            });
         }
     }
 }
