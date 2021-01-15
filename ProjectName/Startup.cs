@@ -41,7 +41,7 @@ namespace ProjectName
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredUniqueChars = 0;
-            })
+            });
         }
 
         public void Configure(IApplicationBuilder app)

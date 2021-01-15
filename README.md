@@ -47,7 +47,7 @@
 1. Navigate to the PROJECTNAME.Solution/PROJECTNAME directory in terminal.
 2. Run command `dotnet ef database update` to generate database.
 3. Run command `dotnet ef migrations add [MIGRATIONNAME]` and `dotnet ef database update` if you're making changes to the database. 
-4. To access your database that you've set up in MySQL workbench add the following code into a `appsettings.json` file in the `PROJECTNAME.Solutions/PROJECTDIRECTORY`:
+4. To access your database that you've set up in MySQL workbench add the following code into a `appsettings.json` file in the `PROJECTNAME.Solution/PROJECTDIRECTORY`:
 
 ```
 {
@@ -72,7 +72,7 @@ INSERT DATABASE SCHEMA HERE
 
 ##### View In Browser
 
-1. To view in browser, navigate to `PROJECTNAME.Solutions/PROJECTNAME` in the command line.
+1. To view in browser, navigate to `PROJECTNAME.Solution/PROJECTNAME` in the command line.
 2. Use command `dotnet build` and `dotnet run` to start a local version of the page. 
 3. Navigate to http://localhost:5000
 
