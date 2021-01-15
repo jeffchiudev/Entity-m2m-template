@@ -12,7 +12,7 @@ namespace ProjectName.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ToDoListContext db) //dependency injection
+        public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ProjectNameContext db) //dependency injection
         {
             _userManager = userManager;
             _signInManager = signInManager;
