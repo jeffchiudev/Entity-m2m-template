@@ -6,7 +6,7 @@ using ProjectName.ViewModels;
 
 namespace ProjectName.Controllers
 {
-    public class AccountController : Controllers
+    public class AccountController : Controller
     {
         private readonly ProjectNameContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
